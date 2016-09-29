@@ -1,0 +1,11 @@
+#!/bin/bash
+# creates a template for an euler problem
+
+[ ! -n "$1" ] && exit 1
+
+mkdir "$(dirname $0)/euler$1"
+printf "/* project euler: problem $1 */\n#include \"common.h\"\n\nvoid euler$1(void);\n\nint main(int argc, char** argv) {\n\ttimer(euler$1);\n\treturn 0;\n}\n\nvoid euler$1(void) {\n}" > "$(dirname $0)/euler$1/$1.c"
+cp $(dirname $0)/common/makefile "$(dirname $0)/euler$1"
+cp $(dirname $0)/common/common.h "$(dirname $0)/euler$1"
+
+echo "done"
