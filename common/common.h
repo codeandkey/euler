@@ -189,12 +189,15 @@ int is_prime(long n) {
 
 	for (unsigned long i = 3; i <= ceil(sqrt(n)); i += 2) {
 		if (!(n % i)) {
-			prime_cache[n] = 1;
+			if (n < PRIME_CACHE_SIZE) {
+				prime_cache[n] = 1;
+			}
+
 			return 0;
 		}
 	}
 
-	if (n >= PRIME_CACHE_SIZE) {
+	if (n < PRIME_CACHE_SIZE) {
 		prime_cache[n] = 2;
 	}
 
